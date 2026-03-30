@@ -127,7 +127,7 @@ const rejectRequest = async (req, res) => {
 const getReceivedRequests = async (req, res) => {
   try {
     const requests = await PartnerRequest.find({ to: req.user._id })
-      .populate("from", "name email profilePhoto bio")
+      .populate("from", "name email phone profilePhoto bio currentLocation")
       .populate("travelPost")
       .sort({ createdAt: -1 });
 
@@ -136,11 +136,10 @@ const getReceivedRequests = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 const getSentRequests = async (req, res) => {
   try {
     const requests = await PartnerRequest.find({ from: req.user._id })
-      .populate("to", "name email profilePhoto bio")
+      .populate("to", "name email phone profilePhoto bio currentLocation")
       .populate("travelPost")
       .sort({ createdAt: -1 });
 

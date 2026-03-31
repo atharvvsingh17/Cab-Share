@@ -54,12 +54,12 @@ const AuthPage = () => {
 
   return (
     <div style={styles.container}>
-      {/* Animated background blobs */}
+      {}
       <div style={{...styles.blob, ...styles.blob1}} />
       <div style={{...styles.blob, ...styles.blob2}} />
       
       <div style={styles.card} className="animate-slide-up">
-        {/* Logo with sunset gradient */}
+        {/* Logo with Premium Blue gradient */}
         <div style={styles.logoArea}>
           <div style={styles.logoCircle}>
             <span style={styles.logoIcon}>🚗</span>
@@ -70,7 +70,7 @@ const AuthPage = () => {
 
         {step === 1 && (
           <>
-            {/* Toggle with warm gradient */}
+            {/* Toggle with Midnight Glass theme */}
             <div style={styles.toggle}>
               <button
                 style={{ ...styles.toggleBtn, ...(mode === "login" ? styles.toggleActive : {}) }}
@@ -140,7 +140,7 @@ const AuthPage = () => {
               <span style={styles.otpIcon}>📧</span>
               <p style={styles.otpInfo}>
                 We sent a code to<br/>
-                <strong>{form.email}</strong>
+                <strong style={{ color: "#f8fafc" }}>{form.email}</strong>
               </p>
             </div>
             
@@ -178,16 +178,17 @@ const AuthPage = () => {
         )}
       </div>
 
-      {/* Footer tagline */}
+      {}
       <p style={styles.footer}>Join thousands sharing rides across India</p>
     </div>
   );
 };
 
+
 const styles = {
   container: {
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #1A1F3A 0%, #2D1B4E 100%)",
+    background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", /* Deep Midnight Background */
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -201,70 +202,68 @@ const styles = {
     position: "absolute",
     borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
     filter: "blur(80px)",
-    opacity: 0.4,
+    opacity: 0.3,
     animation: "float 20s ease-in-out infinite",
   },
   blob1: {
     width: "400px",
     height: "400px",
-    background: "radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%)",
+    background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)", /* Deep Blue Glow */
     top: "-100px",
     left: "-100px",
   },
   blob2: {
     width: "500px",
     height: "500px",
-    background: "radial-gradient(circle, rgba(168,111,255,0.25) 0%, transparent 70%)",
+    background: "radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%)", /* Light Blue Glow */
     bottom: "-150px",
     right: "-150px",
     animationDelay: "7s",
   },
+  
+  
   card: {
-    background: "rgba(255, 248, 240, 0.05)",
-    backdropFilter: "blur(30px)",
-    border: "1px solid rgba(255, 248, 240, 0.1)",
+    background: "rgba(15, 23, 42, 0.6)",
+    backdropFilter: "blur(20px)",
+    WebkitBackdropFilter: "blur(20px)",
+    border: "1px solid rgba(255, 255, 255, 0.08)",
     borderRadius: "32px",
     padding: "48px",
     width: "100%",
     maxWidth: "460px",
     position: "relative",
     zIndex: 1,
-    boxShadow: "0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,248,240,0.1)",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
   },
-  logoArea: {
-    textAlign: "center",
-    marginBottom: "40px",
-  },
+  
+  logoArea: { textAlign: "center", marginBottom: "40px" },
   logoCircle: {
     width: "80px",
     height: "80px",
     margin: "0 auto 20px",
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
+    background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)", /* Premium Blue Gradient */
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: "0 8px 24px rgba(255,107,53,0.4)",
+    boxShadow: "0 8px 24px rgba(59, 130, 246, 0.3)",
   },
   logoIcon: { fontSize: "40px" },
   logoText: {
     fontSize: "36px",
     fontWeight: "800",
-    background: "linear-gradient(135deg, #FF6B35 0%, #FFC857 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-    fontFamily: "'Outfit', sans-serif",
+    color: "#f8fafc", /* Solid white to prevent the browser rendering box issue */
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
     marginBottom: "8px",
+    letterSpacing: "-0.02em",
   },
-  tagline: {
-    color: "rgba(255, 248, 240, 0.6)",
-    fontSize: "15px",
-    fontWeight: "500",
-  },
+  tagline: { color: "#94a3b8", fontSize: "15px", fontWeight: "500" },
+  
+
   toggle: {
     display: "flex",
-    background: "rgba(255, 248, 240, 0.08)",
+    background: "rgba(255, 255, 255, 0.03)",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
     borderRadius: "16px",
     padding: "6px",
     marginBottom: "32px",
@@ -279,32 +278,31 @@ const styles = {
     fontSize: "15px",
     fontWeight: "700",
     background: "transparent",
-    color: "rgba(255, 248, 240, 0.5)",
+    color: "#94a3b8",
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   },
   toggleActive: {
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
-    color: "#FFF8F0",
-    boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
+    background: "#3b82f6",
+    color: "#ffffff",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)",
   },
+  
   form: { display: "flex", flexDirection: "column", gap: "20px" },
   inputGroup: { display: "flex", flexDirection: "column", gap: "8px" },
-  label: { 
-    color: "rgba(255, 248, 240, 0.7)", 
-    fontSize: "14px", 
-    fontWeight: "600",
-    marginLeft: "4px",
-  },
+  label: { color: "#cbd5e1", fontSize: "13px", fontWeight: "600", marginLeft: "4px", textTransform: "uppercase", letterSpacing: "0.5px" },
+  
+  
   input: {
-    background: "rgba(255, 248, 240, 0.08)",
-    border: "1.5px solid rgba(255, 248, 240, 0.15)",
+    background: "rgba(255, 255, 255, 0.03)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     borderRadius: "14px",
     padding: "16px 18px",
-    color: "#FFF8F0",
+    color: "#ffffff",
     fontSize: "16px",
     outline: "none",
     transition: "all 0.3s",
     fontWeight: "500",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   otpInput: {
     fontSize: "28px",
@@ -313,9 +311,11 @@ const styles = {
     fontWeight: "700",
     paddingLeft: "28px",
   },
+  
+
   btn: {
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
-    color: "#FFF8F0",
+    background: "#3b82f6",
+    color: "#ffffff",
     border: "none",
     borderRadius: "14px",
     padding: "18px",
@@ -323,53 +323,45 @@ const styles = {
     fontWeight: "700",
     cursor: "pointer",
     marginTop: "8px",
-    boxShadow: "0 4px 16px rgba(255,107,53,0.4)",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.3)",
     transition: "all 0.3s",
   },
   backBtn: {
     background: "transparent",
-    border: "1.5px solid rgba(255, 248, 240, 0.15)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     borderRadius: "14px",
     padding: "14px",
-    color: "rgba(255, 248, 240, 0.6)",
+    color: "#94a3b8",
     fontSize: "15px",
     cursor: "pointer",
     fontWeight: "600",
+    transition: "all 0.3s",
   },
+  
   error: { 
-    color: "#FF6B6B", 
+    color: "#ef4444", 
     fontSize: "14px", 
     margin: "0",
     padding: "12px",
-    background: "rgba(255,107,107,0.1)",
+    background: "rgba(239, 68, 68, 0.1)",
     borderRadius: "10px",
-    border: "1px solid rgba(255,107,107,0.2)",
+    border: "1px solid rgba(239, 68, 68, 0.2)",
   },
   success: { 
-    color: "#4ECDC4", 
+    color: "#10b981", 
     fontSize: "14px", 
     margin: "0",
     padding: "12px",
-    background: "rgba(78,205,196,0.1)",
+    background: "rgba(16, 185, 129, 0.1)",
     borderRadius: "10px",
-    border: "1px solid rgba(78,205,196,0.2)",
+    border: "1px solid rgba(16, 185, 129, 0.2)",
   },
-  otpHeader: {
-    textAlign: "center",
-    marginBottom: "8px",
-  },
+  
+  otpHeader: { textAlign: "center", marginBottom: "8px" },
   otpIcon: { fontSize: "48px", display: "block", marginBottom: "12px" },
-  otpInfo: { 
-    color: "rgba(255, 248, 240, 0.7)", 
-    fontSize: "15px",
-    lineHeight: "1.6",
-  },
-  footer: {
-    marginTop: "32px",
-    color: "rgba(255, 248, 240, 0.4)",
-    fontSize: "14px",
-    fontWeight: "500",
-  },
+  otpInfo: { color: "#94a3b8", fontSize: "15px", lineHeight: "1.6" },
+  
+  footer: { marginTop: "32px", color: "#64748b", fontSize: "14px", fontWeight: "500" },
 };
 
 export default AuthPage;

@@ -169,7 +169,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* My Travel Posts */}
+        {}
         <div style={styles.section}>
           <h3 style={styles.sectionTitle}>My Travel Posts</h3>
           {myPosts.length === 0 ? (
@@ -208,45 +208,171 @@ const ProfilePage = () => {
   );
 };
 
+
 const styles = {
-  page: { minHeight: "100vh", background: "linear-gradient(135deg, #0a0a0f 0%, #0d1117 100%)", fontFamily: "'DM Sans', sans-serif" },
-  container: { maxWidth: "700px", margin: "0 auto", padding: "40px 24px", display: "flex", flexDirection: "column", gap: "24px" },
-  profileCard: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "24px", padding: "28px", display: "flex", flexDirection: "column", gap: "20px" },
-  profileTop: { display: "flex", alignItems: "flex-start", gap: "16px" },
-  avatar: { width: "72px", height: "72px", borderRadius: "50%", background: "rgba(250,180,0,0.15)", border: "3px solid rgba(250,180,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
-  avatarText: { color: "#FAB400", fontWeight: "800", fontSize: "28px" },
-  profileInfo: { flex: 1, display: "flex", flexDirection: "column", gap: "4px" },
-  profileName: { color: "#fff", fontSize: "22px", fontWeight: "800", margin: 0, fontFamily: "'Syne', sans-serif" },
-  profileEmail: { color: "rgba(255,255,255,0.4)", fontSize: "14px", margin: 0 },
-  verifiedBadge: { display: "inline-block", background: "rgba(81,207,102,0.1)", border: "1px solid rgba(81,207,102,0.2)", color: "#51cf66", padding: "3px 10px", borderRadius: "100px", fontSize: "11px", fontWeight: "700", marginTop: "4px", width: "fit-content" },
-  editBtn: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "10px", color: "rgba(255,255,255,0.6)", padding: "8px 16px", fontSize: "13px", cursor: "pointer", whiteSpace: "nowrap" },
-  saveBtn: { background: "#FAB400", border: "none", borderRadius: "10px", color: "#0a0a0f", padding: "8px 16px", fontSize: "13px", fontWeight: "700", cursor: "pointer", whiteSpace: "nowrap" },
-  cancelBtn: { background: "transparent", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", color: "rgba(255,255,255,0.4)", padding: "8px 16px", fontSize: "13px", cursor: "pointer", alignSelf: "flex-start" },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", fontFamily: "'Plus Jakarta Sans', sans-serif", paddingBottom: "60px" },
+  container: { maxWidth: "700px", margin: "0 auto", padding: "100px 24px 40px", display: "flex", flexDirection: "column", gap: "32px" },
+  
+  /* Glassmorphism Profile Card */
+  profileCard: { 
+    background: "rgba(15, 23, 42, 0.6)", 
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    border: "1px solid rgba(255, 255, 255, 0.08)", 
+    borderRadius: "24px", 
+    padding: "32px", 
+    display: "flex", 
+    flexDirection: "column", 
+    gap: "24px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+  },
+  
+  profileTop: { display: "flex", alignItems: "flex-start", gap: "20px" },
+  
+  avatar: { 
+    width: "72px", 
+    height: "72px", 
+    borderRadius: "50%", 
+    background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)", 
+    border: "3px solid rgba(59, 130, 246, 0.3)", 
+    display: "flex", 
+    alignItems: "center", 
+    justifyContent: "center", 
+    flexShrink: 0,
+    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)"
+  },
+  avatarText: { color: "#ffffff", fontWeight: "800", fontSize: "28px" },
+  
+  profileInfo: { flex: 1, display: "flex", flexDirection: "column", gap: "6px" },
+  profileName: { color: "#f8fafc", fontSize: "24px", fontWeight: "800", margin: 0, letterSpacing: "-0.02em" },
+  profileEmail: { color: "#94a3b8", fontSize: "14px", margin: 0 },
+  
+  verifiedBadge: { 
+    display: "inline-block", 
+    background: "rgba(16, 185, 129, 0.1)", 
+    border: "1px solid rgba(16, 185, 129, 0.2)", 
+    color: "#10b981", 
+    padding: "4px 12px", 
+    borderRadius: "100px", 
+    fontSize: "12px", 
+    fontWeight: "700", 
+    marginTop: "6px", 
+    width: "fit-content" 
+  },
+  
+  
+  editBtn: { 
+    background: "rgba(255, 255, 255, 0.05)", 
+    border: "1px solid rgba(255, 255, 255, 0.1)", 
+    borderRadius: "12px", 
+    color: "#cbd5e1", 
+    padding: "10px 18px", 
+    fontSize: "13px",
+    fontWeight: "600",
+    cursor: "pointer", 
+    whiteSpace: "nowrap",
+    transition: "all 0.2s ease"
+  },
+  saveBtn: { 
+    background: "#3b82f6", 
+    border: "none", 
+    borderRadius: "12px", 
+    color: "#ffffff", 
+    padding: "10px 18px", 
+    fontSize: "13px", 
+    fontWeight: "700", 
+    cursor: "pointer", 
+    whiteSpace: "nowrap",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)",
+    transition: "all 0.2s ease"
+  },
+  cancelBtn: { 
+    background: "transparent", 
+    border: "1px solid rgba(255, 255, 255, 0.1)", 
+    borderRadius: "12px", 
+    color: "#94a3b8", 
+    padding: "8px 16px", 
+    fontSize: "13px", 
+    fontWeight: "600",
+    cursor: "pointer", 
+    alignSelf: "flex-start",
+    transition: "all 0.2s ease"
+  },
+  
+  
   profileFields: { display: "flex", flexDirection: "column", gap: "12px" },
-  field: { display: "flex", flexDirection: "column", gap: "6px", padding: "12px 16px", background: "rgba(255,255,255,0.02)", borderRadius: "12px" },
-  fieldLabel: { color: "rgba(255,255,255,0.4)", fontSize: "12px", fontWeight: "600" },
-  fieldValue: { color: "#fff", fontSize: "15px" },
-  editInput: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "10px 14px", color: "#fff", fontSize: "15px", outline: "none", width: "100%", boxSizing: "border-box", fontFamily: "'DM Sans', sans-serif" },
-  success: { color: "#51cf66", fontSize: "13px", margin: 0 },
-  error: { color: "#ff6b6b", fontSize: "13px", margin: 0 },
-  section: { display: "flex", flexDirection: "column", gap: "16px" },
-  sectionTitle: { color: "#fff", fontSize: "20px", fontWeight: "800", margin: 0, fontFamily: "'Syne', sans-serif" },
-  postsList: { display: "flex", flexDirection: "column", gap: "12px" },
-  postCard: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "16px", padding: "18px", display: "flex", flexDirection: "column", gap: "10px" },
-  postRoute: { display: "flex", alignItems: "center", gap: "10px" },
-  postFrom: { color: "#fff", fontWeight: "700", fontSize: "16px" },
-  postArrow: { color: "#FAB400", fontSize: "18px" },
-  postTo: { color: "#fff", fontWeight: "700", fontSize: "16px" },
-  postMeta: { display: "flex", gap: "6px", flexWrap: "wrap" },
-  metaChip: { background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", padding: "4px 10px", borderRadius: "8px", fontSize: "12px" },
-  activeChip: { background: "rgba(81,207,102,0.1)", color: "#51cf66" },
-  inactiveChip: { background: "rgba(255,107,107,0.1)", color: "#ff6b6b" },
-  postNote: { color: "rgba(255,255,255,0.4)", fontSize: "13px", fontStyle: "italic", margin: 0 },
-  deleteBtn: { background: "rgba(255,107,107,0.1)", border: "1px solid rgba(255,107,107,0.2)", color: "#ff6b6b", borderRadius: "8px", padding: "7px 14px", fontSize: "13px", cursor: "pointer", alignSelf: "flex-start" },
-  emptyPosts: { textAlign: "center", padding: "40px", background: "rgba(255,255,255,0.02)", borderRadius: "16px", color: "rgba(255,255,255,0.4)", fontSize: "15px" },
-  emptyHint: { fontSize: "13px", marginTop: "8px", color: "rgba(255,255,255,0.25)" },
-  center: { textAlign: "center", padding: "80px" },
-  loadingText: { color: "rgba(255,255,255,0.4)" },
+  field: { 
+    display: "flex", 
+    flexDirection: "column", 
+    gap: "8px", 
+    padding: "14px 18px", 
+    background: "rgba(255, 255, 255, 0.02)", 
+    border: "1px solid rgba(255, 255, 255, 0.05)",
+    borderRadius: "14px" 
+  },
+  fieldLabel: { color: "#64748b", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.5px" },
+  fieldValue: { color: "#f8fafc", fontSize: "15px", fontWeight: "500" },
+  editInput: { 
+    background: "rgba(255, 255, 255, 0.03)", 
+    border: "1px solid rgba(255, 255, 255, 0.1)", 
+    borderRadius: "10px", 
+    padding: "12px 14px", 
+    color: "#ffffff", 
+    fontSize: "15px", 
+    outline: "none", 
+    width: "100%", 
+    boxSizing: "border-box", 
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
+    transition: "all 0.2s ease"
+  },
+  
+  success: { color: "#10b981", background: "rgba(16, 185, 129, 0.1)", padding: "10px 14px", borderRadius: "10px", fontSize: "13px", fontWeight: "600", margin: 0 },
+  error: { color: "#ef4444", background: "rgba(239, 68, 68, 0.1)", padding: "10px 14px", borderRadius: "10px", fontSize: "13px", fontWeight: "600", margin: 0 },
+  
+  /* Travel Posts Section */
+  section: { display: "flex", flexDirection: "column", gap: "20px" },
+  sectionTitle: { color: "#f8fafc", fontSize: "22px", fontWeight: "800", margin: 0, letterSpacing: "-0.01em" },
+  postsList: { display: "flex", flexDirection: "column", gap: "16px" },
+  
+  postCard: { 
+    background: "rgba(255, 255, 255, 0.02)", 
+    border: "1px solid rgba(255, 255, 255, 0.05)", 
+    borderRadius: "20px", 
+    padding: "20px", 
+    display: "flex", 
+    flexDirection: "column", 
+    gap: "14px" 
+  },
+  postRoute: { display: "flex", alignItems: "center", gap: "12px" },
+  postFrom: { color: "#f8fafc", fontWeight: "700", fontSize: "16px" },
+  postArrow: { color: "#3b82f6", fontSize: "18px", fontWeight: "700" },
+  postTo: { color: "#f8fafc", fontWeight: "700", fontSize: "16px" },
+  
+  postMeta: { display: "flex", gap: "8px", flexWrap: "wrap" },
+  metaChip: { background: "rgba(255, 255, 255, 0.05)", color: "#cbd5e1", padding: "6px 12px", borderRadius: "10px", fontSize: "12px", fontWeight: "600" },
+  activeChip: { background: "rgba(16, 185, 129, 0.1)", color: "#10b981", border: "1px solid rgba(16, 185, 129, 0.2)" },
+  inactiveChip: { background: "rgba(239, 68, 68, 0.1)", color: "#ef4444", border: "1px solid rgba(239, 68, 68, 0.2)" },
+  
+  postNote: { color: "#94a3b8", fontSize: "13px", fontStyle: "italic", margin: 0, background: "rgba(255, 255, 255, 0.02)", padding: "10px", borderRadius: "8px" },
+  
+  deleteBtn: { 
+    background: "rgba(239, 68, 68, 0.1)", 
+    border: "1px solid rgba(239, 68, 68, 0.2)", 
+    color: "#ef4444", 
+    borderRadius: "10px", 
+    padding: "8px 16px", 
+    fontSize: "13px", 
+    fontWeight: "600",
+    cursor: "pointer", 
+    alignSelf: "flex-start",
+    transition: "all 0.2s ease"
+  },
+  
+  emptyPosts: { textAlign: "center", padding: "40px", background: "rgba(255, 255, 255, 0.02)", border: "1px dashed rgba(255, 255, 255, 0.1)", borderRadius: "20px", color: "#94a3b8", fontSize: "15px" },
+  emptyHint: { fontSize: "13px", marginTop: "8px", color: "#64748b" },
+  
+  center: { textAlign: "center", padding: "100px 24px" },
+  loadingText: { color: "#94a3b8", fontSize: "16px", fontWeight: "500" },
 };
 
 export default ProfilePage;

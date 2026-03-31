@@ -65,7 +65,7 @@ const Navbar = () => {
           <div style={styles.userInfo}>
             <span style={styles.greeting}>Hey, {user?.name?.split(" ")[0]}!</span>
           </div>
-          <button style={styles.logoutBtn} onClick={handleLogout}>
+          <button style={styles.logoutBtn} onClick={handleLogout} className="logout-btn">
             <span style={styles.logoutIcon}>→</span>
             Logout
           </button>
@@ -75,17 +75,19 @@ const Navbar = () => {
   );
 };
 
+
 const styles = {
   nav: {
-    background: "rgba(26, 31, 58, 0.9)",
-    backdropFilter: "blur(30px)",
-    borderBottom: "1.5px solid rgba(255, 248, 240, 0.1)",
+    background: "rgba(15, 23, 42, 0.8)", 
+    backdropFilter: "blur(20px)",
+    WebkitBackdropFilter: "blur(20px)",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
     position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     zIndex: 100,
-    boxShadow: "0 4px 24px rgba(0,0,0,0.1)",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
   },
   inner: {
     maxWidth: "1200px",
@@ -102,27 +104,24 @@ const styles = {
     alignItems: "center",
     gap: "12px",
     cursor: "pointer",
-    transition: "transform 0.3s",
+    transition: "transform 0.3s ease",
   },
   logoCircle: {
     width: "44px",
     height: "44px",
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
+    background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)", 
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "24px",
-    boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
+    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
   },
   logoText: {
     fontSize: "24px",
     fontWeight: "800",
-    background: "linear-gradient(135deg, #FF6B35 0%, #FFC857 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-    fontFamily: "'Outfit', sans-serif",
+    color: "#f8fafc", 
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
     letterSpacing: "-0.02em",
   },
   links: { 
@@ -137,32 +136,32 @@ const styles = {
     gap: "8px",
     background: "transparent",
     border: "none",
-    color: "rgba(255, 248, 240, 0.6)",
+    color: "#94a3b8", 
     padding: "10px 18px",
     borderRadius: "12px",
     cursor: "pointer",
     fontSize: "15px",
     fontWeight: "600",
-    transition: "all 0.3s",
+    transition: "all 0.3s ease",
     position: "relative",
   },
   activeLink: {
-    background: "rgba(255, 107, 53, 0.15)",
-    color: "#FF6B35",
-    boxShadow: "0 2px 8px rgba(255,107,53,0.2)",
+    background: "rgba(59, 130, 246, 0.15)",
+    color: "#60a5fa",
+    boxShadow: "0 2px 8px rgba(59, 130, 246, 0.1)",
   },
   linkIcon: { fontSize: "18px" },
-  linkText: { fontWeight: "600" },
+  linkText: { fontWeight: "600", fontFamily: "'Plus Jakarta Sans', sans-serif" },
   badge: {
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
-    color: "#FFF8F0",
+    background: "#ef4444", 
+    color: "#ffffff",
     borderRadius: "100px",
     padding: "2px 7px",
     fontSize: "11px",
     fontWeight: "800",
     minWidth: "20px",
     textAlign: "center",
-    boxShadow: "0 2px 6px rgba(255,107,53,0.3)",
+    boxShadow: "0 2px 6px rgba(239, 68, 68, 0.4)",
     animation: "pulse 2s ease-in-out infinite",
   },
   right: { 
@@ -176,23 +175,25 @@ const styles = {
     alignItems: "flex-end",
   },
   greeting: { 
-    color: "rgba(255, 248, 240, 0.8)", 
+    color: "#cbd5e1", 
     fontSize: "14px",
     fontWeight: "600",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   logoutBtn: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
-    background: "rgba(255, 248, 240, 0.08)",
-    border: "1.5px solid rgba(255, 248, 240, 0.15)",
+    background: "rgba(255, 255, 255, 0.05)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     borderRadius: "12px",
-    color: "rgba(255, 248, 240, 0.7)",
+    color: "#94a3b8",
     padding: "10px 16px",
     fontSize: "14px",
     fontWeight: "600",
     cursor: "pointer",
-    transition: "all 0.3s",
+    transition: "all 0.3s ease",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   logoutIcon: {
     fontSize: "18px",

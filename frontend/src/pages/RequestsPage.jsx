@@ -56,10 +56,11 @@ const RequestsPage = () => {
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 
+  
   const statusColor = {
-    pending: { bg: "rgba(255,200,87,0.15)", border: "rgba(255,200,87,0.3)", text: "#FFC857" },
-    accepted: { bg: "rgba(78,205,196,0.15)", border: "rgba(78,205,196,0.3)", text: "#4ECDC4" },
-    rejected: { bg: "rgba(255,107,107,0.15)", border: "rgba(255,107,107,0.3)", text: "#FF6B6B" },
+    pending: { bg: "rgba(245, 158, 11, 0.15)", border: "rgba(245, 158, 11, 0.3)", text: "#f59e0b" },
+    accepted: { bg: "rgba(16, 185, 129, 0.15)", border: "rgba(16, 185, 129, 0.3)", text: "#10b981" },
+    rejected: { bg: "rgba(239, 68, 68, 0.15)", border: "rgba(239, 68, 68, 0.3)", text: "#ef4444" },
   };
 
   const RequestCard = ({ req, type }) => {
@@ -106,7 +107,7 @@ const RequestsPage = () => {
           </div>
         )}
 
-        {/* Contact Details for Accepted Requests */}
+        {}
         {isAccepted && (
           <div style={styles.contactBox}>
             <div style={styles.contactHeader}>
@@ -166,8 +167,7 @@ const RequestsPage = () => {
                 href={`tel:${partner.phone.replace(/\s/g, '')}`} 
                 style={styles.callBtn}
                 onClick={() => {
-                  // For mobile devices, tel: link will open dialer automatically
-                  // No additional JavaScript needed
+                  
                 }}
               >
                 <span style={styles.callIcon}>📞</span>
@@ -182,7 +182,7 @@ const RequestsPage = () => {
           {formatDate(req.createdAt)}
         </p>
 
-        {/* Actions for received pending requests */}
+        {}
         {type === "received" && req.status === "pending" && (
           <div style={styles.actions}>
             <button
@@ -271,12 +271,15 @@ const RequestsPage = () => {
   );
 };
 
+
 const styles = {
-  page: { minHeight: "100vh", background: "linear-gradient(135deg, #1A1F3A 0%, #2D1B4E 100%)", fontFamily: "'Plus Jakarta Sans', sans-serif", paddingBottom: "80px" },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", fontFamily: "'Plus Jakarta Sans', sans-serif", paddingBottom: "80px" },
   container: { maxWidth: "720px", margin: "0 auto", padding: "100px 20px 40px" },
   header: { marginBottom: "32px" },
-  title: { color: "#FFF8F0", fontSize: "36px", fontWeight: "800", margin: "0 0 8px", fontFamily: "'Outfit', sans-serif", letterSpacing: "-0.02em" },
-  subtitle: { color: "rgba(255, 248, 240, 0.6)", fontSize: "16px", margin: 0, fontWeight: "500" },
+  title: { color: "#f8fafc", fontSize: "36px", fontWeight: "800", margin: "0 0 8px", letterSpacing: "-0.02em" },
+  subtitle: { color: "#94a3b8", fontSize: "16px", margin: 0, fontWeight: "500" },
+  
+
   tabs: { display: "flex", gap: "12px", marginBottom: "28px" },
   tab: { 
     flex: 1, 
@@ -286,9 +289,9 @@ const styles = {
     cursor: "pointer", 
     fontSize: "16px", 
     fontWeight: "700", 
-    background: "rgba(255, 248, 240, 0.05)",
-    border: "1.5px solid rgba(255, 248, 240, 0.1)",
-    color: "rgba(255, 248, 240, 0.5)",
+    background: "rgba(255, 255, 255, 0.03)",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
+    color: "#94a3b8",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -296,83 +299,91 @@ const styles = {
     transition: "all 0.3s",
   },
   tabActive: { 
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
+    background: "#3b82f6",
     borderColor: "transparent",
-    color: "#FFF8F0",
-    boxShadow: "0 4px 16px rgba(255,107,53,0.3)",
+    color: "#ffffff",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)",
   },
   badge: { 
-    background: "rgba(255, 248, 240, 0.9)", 
-    color: "#FF6B35", 
+    background: "rgba(255, 255, 255, 0.2)", 
+    color: "#ffffff", 
     borderRadius: "100px", 
     padding: "2px 8px", 
     fontSize: "13px", 
     fontWeight: "800",
   },
+  
   list: { display: "flex", flexDirection: "column", gap: "16px" },
+  
+  
   card: { 
-    background: "rgba(255, 248, 240, 0.05)", 
-    backdropFilter: "blur(20px)",
-    border: "1.5px solid rgba(255, 248, 240, 0.1)", 
+    background: "rgba(15, 23, 42, 0.6)", 
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    border: "1px solid rgba(255, 255, 255, 0.08)", 
     borderRadius: "24px", 
     padding: "24px", 
     display: "flex", 
     flexDirection: "column", 
-    gap: "16px",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+    gap: "20px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
   },
   cardHeader: { display: "flex", alignItems: "center", gap: "14px" },
   avatar: { 
     width: "52px", 
     height: "52px", 
     borderRadius: "50%", 
-    background: "linear-gradient(135deg, #FF6B35 0%, #FF5E78 100%)",
+    background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)",
     display: "flex", 
     alignItems: "center", 
     justifyContent: "center", 
     flexShrink: 0,
-    boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
+    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
   },
-  avatarText: { color: "#FFF8F0", fontWeight: "800", fontSize: "20px" },
+  avatarText: { color: "#ffffff", fontWeight: "800", fontSize: "20px" },
   cardInfo: { flex: 1 },
-  cardName: { color: "#FFF8F0", fontWeight: "700", fontSize: "17px", margin: "0 0 4px", letterSpacing: "-0.01em" },
-  cardEmail: { color: "rgba(255, 248, 240, 0.5)", fontSize: "14px", margin: 0, fontWeight: "500" },
+  cardName: { color: "#f8fafc", fontWeight: "700", fontSize: "17px", margin: "0 0 4px", letterSpacing: "-0.01em" },
+  cardEmail: { color: "#94a3b8", fontSize: "14px", margin: 0, fontWeight: "500" },
   statusBadge: { 
     padding: "6px 14px", 
     borderRadius: "100px", 
     fontSize: "13px", 
     fontWeight: "700", 
-    border: "1.5px solid",
+    border: "1px solid",
     whiteSpace: "nowrap",
   },
+  
+  
   routeCard: {
-    background: "rgba(255, 248, 240, 0.05)",
+    background: "rgba(255, 255, 255, 0.03)",
     borderRadius: "16px",
     padding: "16px",
-    border: "1.5px solid rgba(255, 248, 240, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
   },
   routeHeader: { display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" },
-  routeFrom: { color: "#4ECDC4", fontSize: "16px", fontWeight: "700" },
+  routeFrom: { color: "#60a5fa", fontSize: "16px", fontWeight: "700" },
   routeArrow: { flex: 1, display: "flex", alignItems: "center", gap: "8px" },
-  arrowLine: { flex: 1, height: "2px", background: "linear-gradient(90deg, #4ECDC4 0%, #FF6B35 100%)" },
-  arrowHead: { color: "#FF6B35", fontSize: "20px", fontWeight: "700" },
-  routeTo: { color: "#FF6B35", fontSize: "16px", fontWeight: "700" },
+  arrowLine: { flex: 1, height: "2px", background: "linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%)" },
+  arrowHead: { color: "#3b82f6", fontSize: "20px", fontWeight: "700" },
+  routeTo: { color: "#3b82f6", fontSize: "16px", fontWeight: "700" },
   routeDetails: { display: "flex", gap: "10px", flexWrap: "wrap" },
-  routeChip: { background: "rgba(255, 248, 240, 0.08)", color: "rgba(255, 248, 240, 0.7)", padding: "6px 12px", borderRadius: "10px", fontSize: "13px", fontWeight: "600" },
+  routeChip: { background: "rgba(255, 255, 255, 0.05)", color: "#cbd5e1", padding: "6px 12px", borderRadius: "10px", fontSize: "13px", fontWeight: "600" },
+  
+  
   messageBox: {
-    background: "rgba(255, 248, 240, 0.05)",
-    borderLeft: "3px solid #FFC857",
+    background: "rgba(255, 255, 255, 0.02)",
+    borderLeft: "3px solid #f59e0b",
     borderRadius: "12px",
     padding: "14px 16px",
     position: "relative",
   },
-  quoteIcon: { position: "absolute", top: "-8px", left: "8px", fontSize: "32px", color: "rgba(255, 200, 87, 0.3)", fontFamily: "Georgia, serif" },
-  message: { color: "rgba(255, 248, 240, 0.7)", fontSize: "14px", fontStyle: "italic", margin: 0, lineHeight: "1.6", paddingLeft: "20px" },
+  quoteIcon: { position: "absolute", top: "-8px", left: "8px", fontSize: "32px", color: "rgba(245, 158, 11, 0.3)", fontFamily: "Georgia, serif" },
+  message: { color: "#cbd5e1", fontSize: "14px", fontStyle: "italic", margin: 0, lineHeight: "1.6", paddingLeft: "20px" },
   
-  // Contact Box
+  
   contactBox: { 
-    background: "linear-gradient(135deg, rgba(78,205,196,0.1) 0%, rgba(42,124,159,0.1) 100%)",
-    border: "1.5px solid rgba(78,205,196,0.3)",
+    background: "rgba(59, 130, 246, 0.05)",
+    border: "1px solid rgba(59, 130, 246, 0.2)",
     borderRadius: "18px", 
     padding: "20px",
     marginTop: "8px",
@@ -380,8 +391,8 @@ const styles = {
   contactHeader: { marginBottom: "16px" },
   contactBadge: {
     display: "inline-block",
-    background: "rgba(78,205,196,0.2)",
-    color: "#4ECDC4",
+    background: "rgba(16, 185, 129, 0.2)",
+    color: "#10b981",
     padding: "6px 14px",
     borderRadius: "100px",
     fontSize: "13px",
@@ -393,21 +404,22 @@ const styles = {
     alignItems: "center",
     gap: "14px",
     padding: "14px",
-    background: "rgba(255, 248, 240, 0.05)",
+    background: "rgba(255, 255, 255, 0.03)",
     borderRadius: "14px",
-    border: "1px solid rgba(255, 248, 240, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
   },
   contactIcon: { fontSize: "22px", flexShrink: 0 },
   contactContent: { flex: 1, display: "flex", flexDirection: "column", gap: "4px" },
-  contactLabel: { color: "rgba(255, 248, 240, 0.5)", fontSize: "12px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" },
-  contactValue: { color: "#FFF8F0", fontSize: "15px", fontWeight: "600", wordBreak: "break-word" },
+  contactLabel: { color: "#94a3b8", fontSize: "12px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" },
+  contactValue: { color: "#f8fafc", fontSize: "15px", fontWeight: "600", wordBreak: "break-word" },
+  
   callBtn: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     gap: "10px",
-    background: "linear-gradient(135deg, #4ECDC4 0%, #2A7C9F 100%)",
-    color: "#FFF8F0",
+    background: "#3b82f6",
+    color: "#ffffff",
     border: "none",
     borderRadius: "14px",
     padding: "16px",
@@ -415,27 +427,20 @@ const styles = {
     fontWeight: "700",
     textDecoration: "none",
     cursor: "pointer",
-    boxShadow: "0 4px 16px rgba(78,205,196,0.3)",
+    boxShadow: "0 4px 14px rgba(59, 130, 246, 0.3)",
     transition: "all 0.3s",
   },
   callIcon: { fontSize: "20px" },
   
-  timestamp: { 
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    color: "rgba(255, 248, 240, 0.4)", 
-    fontSize: "13px", 
-    margin: 0,
-    fontWeight: "500",
-  },
+  timestamp: { display: "flex", alignItems: "center", gap: "6px", color: "#64748b", fontSize: "13px", margin: 0, fontWeight: "500" },
   timestampIcon: { fontSize: "14px" },
+  
   actions: { display: "flex", gap: "12px" },
   acceptBtn: { 
     flex: 1, 
-    background: "rgba(78,205,196,0.15)", 
-    border: "1.5px solid rgba(78,205,196,0.3)", 
-    color: "#4ECDC4", 
+    background: "rgba(16, 185, 129, 0.1)", 
+    border: "1px solid rgba(16, 185, 129, 0.2)", 
+    color: "#10b981", 
     borderRadius: "14px", 
     padding: "14px", 
     fontSize: "15px", 
@@ -445,9 +450,9 @@ const styles = {
   },
   rejectBtn: { 
     flex: 1, 
-    background: "rgba(255,107,107,0.15)", 
-    border: "1.5px solid rgba(255,107,107,0.3)", 
-    color: "#FF6B6B", 
+    background: "rgba(239, 68, 68, 0.1)", 
+    border: "1px solid rgba(239, 68, 68, 0.2)", 
+    color: "#ef4444", 
     borderRadius: "14px", 
     padding: "14px", 
     fontSize: "15px", 
@@ -455,27 +460,30 @@ const styles = {
     cursor: "pointer",
     transition: "all 0.3s",
   },
+  
   center: { textAlign: "center", padding: "80px 20px" },
   loader: {
     width: "48px",
     height: "48px",
-    border: "4px solid rgba(255, 248, 240, 0.1)",
-    borderTop: "4px solid #FF6B35",
+    border: "4px solid rgba(255, 255, 255, 0.05)",
+    borderTop: "4px solid #3b82f6",
     borderRadius: "50%",
     animation: "spin 1s linear infinite",
     margin: "0 auto 20px",
   },
-  loadingText: { color: "rgba(255, 248, 240, 0.5)", fontSize: "16px", fontWeight: "500" },
+  loadingText: { color: "#94a3b8", fontSize: "16px", fontWeight: "500" },
+  
   empty: { textAlign: "center", padding: "80px 20px" },
   emptyIcon: { fontSize: "64px", display: "block", marginBottom: "20px" },
-  emptyTitle: { color: "#FFF8F0", fontSize: "22px", fontWeight: "700", margin: "0 0 12px" },
-  emptyText: { color: "rgba(255, 248, 240, 0.5)", fontSize: "15px", margin: 0, lineHeight: "1.6", maxWidth: "400px", marginLeft: "auto", marginRight: "auto" },
+  emptyTitle: { color: "#f8fafc", fontSize: "22px", fontWeight: "700", margin: "0 0 12px" },
+  emptyText: { color: "#94a3b8", fontSize: "15px", margin: 0, lineHeight: "1.6", maxWidth: "400px", marginLeft: "auto", marginRight: "auto" },
+  
   errorBox: {
-    background: "rgba(255,107,107,0.1)",
-    border: "1.5px solid rgba(255,107,107,0.3)",
+    background: "rgba(239, 68, 68, 0.1)",
+    border: "1px solid rgba(239, 68, 68, 0.3)",
     borderRadius: "14px",
     padding: "14px 18px",
-    color: "#FF6B6B",
+    color: "#ef4444",
     fontSize: "14px",
     marginBottom: "20px",
     display: "flex",

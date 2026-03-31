@@ -6,14 +6,28 @@ import ResultsPage from "./pages/ResultsPage";
 import RequestsPage from "./pages/RequestsPage";
 import ProfilePage from "./pages/ProfilePage";
 
-
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  if (loading) return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0f", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <p style={{ color: "rgba(255,255,255,0.4)", fontFamily: "DM Sans, sans-serif" }}>Loading...</p>
-    </div>
-  );
+  
+  if (loading) {
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.spinner} />
+        <p style={styles.loadingText}>Loading CabShare...</p>
+        
+        {}
+        <style>
+          {`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
+  
   return user ? children : <Navigate to="/" />;
 };
 
@@ -40,5 +54,31 @@ function App() {
     </BrowserRouter>
   );
 }
+
+const styles = {
+  loadingContainer: {
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", 
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "16px",
+  },
+  spinner: {
+    width: "48px",
+    height: "48px",
+    border: "4px solid rgba(255, 255, 255, 0.05)",
+    borderTop: "4px solid #3b82f6", 
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite",
+  },
+  loadingText: {
+    color: "#94a3b8",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+  }
+};
 
 export default App;

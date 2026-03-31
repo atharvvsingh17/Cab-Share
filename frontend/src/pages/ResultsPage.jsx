@@ -155,53 +155,176 @@ const ResultsPage = () => {
   );
 };
 
+
 const styles = {
-  page: { minHeight: "100vh", background: "linear-gradient(135deg, #0a0a0f 0%, #0d1117 100%)", fontFamily: "'DM Sans', sans-serif" },
-  container: { maxWidth: "800px", margin: "0 auto", padding: "40px 24px" },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", fontFamily: "'Plus Jakarta Sans', sans-serif", paddingBottom: "80px" },
+  container: { maxWidth: "800px", margin: "0 auto", padding: "100px 24px 40px" },
+  
   header: { display: "flex", alignItems: "flex-start", gap: "16px", marginBottom: "32px" },
-  backBtn: { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "10px", color: "rgba(255,255,255,0.6)", padding: "10px 16px", cursor: "pointer", fontSize: "14px", whiteSpace: "nowrap", marginTop: "4px" },
-  title: { color: "#fff", fontSize: "28px", fontWeight: "800", margin: "0 0 6px", fontFamily: "'Syne', sans-serif" },
-  subtitle: { color: "rgba(255,255,255,0.5)", fontSize: "15px", margin: 0 },
-  route: { color: "#FAB400", fontWeight: "600" },
-  dot: { margin: "0 8px", color: "rgba(255,255,255,0.3)" },
-  count: { color: "rgba(255,255,255,0.4)", fontSize: "13px", marginBottom: "16px" },
-  grid: { display: "flex", flexDirection: "column", gap: "16px" },
-  card: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: "24px", display: "flex", flexDirection: "column", gap: "16px" },
-  cardTop: { display: "flex", alignItems: "center", gap: "12px" },
-  avatar: { width: "48px", height: "48px", borderRadius: "50%", background: "rgba(250,180,0,0.15)", border: "2px solid rgba(250,180,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" },
+  backBtn: { 
+    background: "rgba(255, 255, 255, 0.03)", 
+    border: "1px solid rgba(255, 255, 255, 0.08)", 
+    borderRadius: "12px", 
+    color: "#94a3b8", 
+    padding: "10px 16px", 
+    cursor: "pointer", 
+    fontSize: "14px", 
+    fontWeight: "600",
+    whiteSpace: "nowrap", 
+    marginTop: "6px",
+    transition: "all 0.2s ease"
+  },
+  title: { color: "#f8fafc", fontSize: "32px", fontWeight: "800", margin: "0 0 6px", letterSpacing: "-0.02em" },
+  subtitle: { color: "#94a3b8", fontSize: "15px", margin: 0, fontWeight: "500" },
+  route: { color: "#60a5fa", fontWeight: "700" },
+  dot: { margin: "0 8px", color: "rgba(255, 255, 255, 0.2)" },
+  count: { color: "#cbd5e1", fontSize: "14px", fontWeight: "600", marginBottom: "16px" },
+  
+  grid: { display: "flex", flexDirection: "column", gap: "20px" },
+  
+  
+  card: { 
+    background: "rgba(15, 23, 42, 0.6)", 
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    border: "1px solid rgba(255, 255, 255, 0.08)", 
+    borderRadius: "24px", 
+    padding: "24px", 
+    display: "flex", 
+    flexDirection: "column", 
+    gap: "18px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+  },
+  
+  cardTop: { display: "flex", alignItems: "center", gap: "14px" },
+  avatar: { 
+    width: "48px", 
+    height: "48px", 
+    borderRadius: "50%", 
+    background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)", 
+    border: "2px solid rgba(59, 130, 246, 0.3)", 
+    display: "flex", 
+    alignItems: "center", 
+    justifyContent: "center", 
+    flexShrink: 0, 
+    overflow: "hidden",
+    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
+  },
   avatarImg: { width: "100%", height: "100%", objectFit: "cover" },
-  avatarText: { color: "#FAB400", fontWeight: "700", fontSize: "18px" },
-  userName: { color: "#fff", fontWeight: "700", fontSize: "16px", margin: 0 },
-  userEmail: { color: "rgba(255,255,255,0.4)", fontSize: "13px", margin: 0 },
-  seatsBadge: { marginLeft: "auto", background: "rgba(250,180,0,0.1)", border: "1px solid rgba(250,180,0,0.2)", color: "#FAB400", padding: "4px 12px", borderRadius: "100px", fontSize: "13px", fontWeight: "600" },
+  avatarText: { color: "#ffffff", fontWeight: "800", fontSize: "18px" },
+  userName: { color: "#f8fafc", fontWeight: "700", fontSize: "16px", margin: 0, letterSpacing: "-0.01em" },
+  userEmail: { color: "#94a3b8", fontSize: "13px", margin: 0, fontWeight: "500" },
+  
+  seatsBadge: { 
+    marginLeft: "auto", 
+    background: "rgba(59, 130, 246, 0.1)", 
+    border: "1px solid rgba(59, 130, 246, 0.2)", 
+    color: "#60a5fa", 
+    padding: "6px 14px", 
+    borderRadius: "100px", 
+    fontSize: "13px", 
+    fontWeight: "700" 
+  },
+  
   routeBox: { display: "flex", flexDirection: "column", gap: "4px", padding: "0 4px" },
   routeItem: { display: "flex", alignItems: "center", gap: "10px" },
-  routeDot: { color: "#51cf66", fontSize: "10px" },
-  routeDotEnd: { color: "#ff6b6b", fontSize: "10px" },
-  routeLine: { width: "2px", height: "16px", background: "rgba(255,255,255,0.1)", marginLeft: "4px" },
-  routeText: { color: "#fff", fontSize: "15px", fontWeight: "500" },
+  routeDot: { color: "#10b981", fontSize: "12px" }, /* Emerald for Start */
+  routeDotEnd: { color: "#ef4444", fontSize: "12px" }, /* Rose for End */
+  routeLine: { width: "2px", height: "16px", background: "rgba(255, 255, 255, 0.1)", marginLeft: "5px" },
+  routeText: { color: "#f8fafc", fontSize: "15px", fontWeight: "600" },
+  
   details: { display: "flex", gap: "8px", flexWrap: "wrap" },
-  detailChip: { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px", padding: "6px 12px", color: "rgba(255,255,255,0.6)", fontSize: "13px" },
-  fareBox: { background: "rgba(250,180,0,0.08)", border: "1px solid rgba(250,180,0,0.2)", borderRadius: "12px", padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" },
+  detailChip: { 
+    background: "rgba(255, 255, 255, 0.03)", 
+    border: "1px solid rgba(255, 255, 255, 0.05)", 
+    borderRadius: "10px", 
+    padding: "6px 12px", 
+    color: "#cbd5e1", 
+    fontSize: "13px",
+    fontWeight: "600"
+  },
+  
+  
+  fareBox: { 
+    background: "rgba(59, 130, 246, 0.05)", 
+    border: "1px solid rgba(59, 130, 246, 0.2)", 
+    borderRadius: "14px", 
+    padding: "16px", 
+    display: "flex", 
+    justifyContent: "space-between", 
+    alignItems: "center" 
+  },
   fareItem: { display: "flex", flexDirection: "column", gap: "4px" },
-  fareLabel: { color: "rgba(255,255,255,0.5)", fontSize: "12px" },
-  fareValue: { color: "#FAB400", fontSize: "16px", fontWeight: "700" },
-  fareHighlight: { color: "#FAB400", fontSize: "20px", fontWeight: "800" },
-  note: { color: "rgba(255,255,255,0.5)", fontSize: "14px", fontStyle: "italic", margin: 0 },
-  bio: { color: "rgba(255,255,255,0.4)", fontSize: "13px", margin: 0 },
-  requestBtn: { background: "#FAB400", color: "#0a0a0f", border: "none", borderRadius: "12px", padding: "14px", fontSize: "15px", fontWeight: "700", cursor: "pointer" },
-  requestBtnSent: { background: "rgba(81,207,102,0.15)", color: "#51cf66", cursor: "default" },
-  requestBtnDisabled: { opacity: 0.6, cursor: "not-allowed" },
-  fullBtn: { background: "rgba(255,107,107,0.1)", color: "#ff6b6b", border: "1px solid rgba(255,107,107,0.2)", borderRadius: "12px", padding: "14px", fontSize: "15px", fontWeight: "700", cursor: "not-allowed" },
+  fareLabel: { color: "#94a3b8", fontSize: "12px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" },
+  fareValue: { color: "#60a5fa", fontSize: "16px", fontWeight: "700" },
+  fareHighlight: { color: "#60a5fa", fontSize: "20px", fontWeight: "800" },
+  
+  note: { color: "#cbd5e1", fontSize: "14px", fontStyle: "italic", margin: 0, padding: "8px 12px", background: "rgba(255,255,255,0.02)", borderRadius: "8px", borderLeft: "3px solid #60a5fa" },
+  bio: { color: "#94a3b8", fontSize: "13px", margin: 0 },
+  
+  /* Buttons */
+  requestBtn: { 
+    background: "#3b82f6", 
+    color: "#ffffff", 
+    border: "none", 
+    borderRadius: "14px", 
+    padding: "16px", 
+    fontSize: "15px", 
+    fontWeight: "700", 
+    cursor: "pointer",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.3)",
+    transition: "all 0.2s ease"
+  },
+  requestBtnSent: { 
+    background: "rgba(16, 185, 129, 0.1)", 
+    color: "#10b981", 
+    border: "1px solid rgba(16, 185, 129, 0.2)",
+    cursor: "default",
+    boxShadow: "none"
+  },
+  requestBtnDisabled: { opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
+  
+  fullBtn: { 
+    background: "rgba(239, 68, 68, 0.1)", 
+    color: "#ef4444", 
+    border: "1px solid rgba(239, 68, 68, 0.2)", 
+    borderRadius: "14px", 
+    padding: "16px", 
+    fontSize: "15px", 
+    fontWeight: "700", 
+    cursor: "not-allowed" 
+  },
+  
   center: { textAlign: "center", padding: "80px 0" },
-  spinner: { width: "40px", height: "40px", border: "3px solid rgba(255,255,255,0.1)", borderTop: "3px solid #FAB400", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 16px" },
-  loadingText: { color: "rgba(255,255,255,0.4)", fontSize: "15px" },
+  spinner: { 
+    width: "40px", 
+    height: "40px", 
+    border: "3px solid rgba(255, 255, 255, 0.05)", 
+    borderTop: "3px solid #3b82f6", 
+    borderRadius: "50%", 
+    animation: "spin 0.8s linear infinite", 
+    margin: "0 auto 16px" 
+  },
+  loadingText: { color: "#94a3b8", fontSize: "15px", fontWeight: "500" },
+  
   emptyBox: { textAlign: "center", padding: "80px 0" },
   emptyIcon: { fontSize: "48px", margin: "0 0 16px" },
-  emptyTitle: { color: "#fff", fontSize: "20px", fontWeight: "700", margin: "0 0 8px" },
-  emptyText: { color: "rgba(255,255,255,0.4)", fontSize: "15px", margin: "0 0 24px" },
-  postBtn: { background: "#FAB400", color: "#0a0a0f", border: "none", borderRadius: "12px", padding: "14px 24px", fontSize: "15px", fontWeight: "700", cursor: "pointer" },
-  error: { color: "#ff6b6b" },
+  emptyTitle: { color: "#f8fafc", fontSize: "22px", fontWeight: "700", margin: "0 0 8px" },
+  emptyText: { color: "#94a3b8", fontSize: "15px", margin: "0 0 24px" },
+  
+  postBtn: { 
+    background: "#3b82f6", 
+    color: "#ffffff", 
+    border: "none", 
+    borderRadius: "14px", 
+    padding: "16px 24px", 
+    fontSize: "15px", 
+    fontWeight: "700", 
+    cursor: "pointer",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.3)",
+  },
+  
+  error: { color: "#ef4444", background: "rgba(239, 68, 68, 0.1)", padding: "12px", borderRadius: "10px", display: "inline-block" },
 };
 
 export default ResultsPage;

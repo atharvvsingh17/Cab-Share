@@ -23,7 +23,7 @@ const HomePage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // Include poster in calculation: totalFare / (seats + 1)
+  
   const farePerPerson = post.seatsAvailable > 0 && post.totalFare 
     ? Math.round(Number(post.totalFare) / (Number(post.seatsAvailable) + 1))
     : 0;
@@ -59,13 +59,13 @@ const HomePage = () => {
       <Navbar />
       <div style={styles.container}>
         <div style={styles.hero}>
-          <div style={styles.heroBadge}>✈️ Travel Smarter</div>
+          <div style={styles.heroBadge}>✈️ Premium Commute</div>
           <h1 style={styles.heroTitle}>
             Find Your<br />
             <span style={styles.heroAccent}>Travel Partner</span>
           </h1>
           <p style={styles.heroSub}>
-            Search for people travelling to the same destination and split the cab fare.
+            Search for verified professionals travelling to your destination and split the fare.
           </p>
         </div>
 
@@ -144,8 +144,8 @@ const HomePage = () => {
               <div style={styles.inputGroup}>
                 <label style={styles.label}>🕐 Time Slot</label>
                 <select style={styles.input} value={post.timeSlot} onChange={(e) => setPost({ ...post, timeSlot: e.target.value })} required>
-                  <option value="">Select a time slot</option>
-                  {TIME_SLOTS.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
+                  <option value="" style={{ color: "#000" }}>Select a time slot</option>
+                  {TIME_SLOTS.map((slot) => <option key={slot} value={slot} style={{ color: "#000" }}>{slot}</option>)}
                 </select>
               </div>
               <div style={styles.inputGroup}>
@@ -191,30 +191,79 @@ const HomePage = () => {
   );
 };
 
+
 const styles = {
-  page: { minHeight: "100vh", background: "linear-gradient(135deg, #0a0a0f 0%, #0d1117 100%)", fontFamily: "'DM Sans', sans-serif" },
-  container: { maxWidth: "800px", margin: "0 auto", padding: "48px 24px" },
+  page: { minHeight: "100vh", background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", fontFamily: "'Plus Jakarta Sans', 'DM Sans', sans-serif" },
+  container: { maxWidth: "800px", margin: "0 auto", padding: "48px 24px", paddingTop: "100px" },
   hero: { textAlign: "center", marginBottom: "48px" },
-  heroBadge: { display: "inline-block", background: "rgba(250,180,0,0.1)", border: "1px solid rgba(250,180,0,0.2)", color: "#FAB400", padding: "6px 16px", borderRadius: "100px", fontSize: "13px", fontWeight: "600", marginBottom: "16px" },
-  heroTitle: { fontSize: "52px", fontWeight: "800", color: "#fff", margin: "0 0 16px", lineHeight: "1.1", fontFamily: "'Syne', sans-serif" },
-  heroAccent: { color: "#FAB400" },
-  heroSub: { color: "rgba(255,255,255,0.5)", fontSize: "17px", maxWidth: "480px", margin: "0 auto" },
-  tabs: { display: "flex", gap: "8px", background: "rgba(255,255,255,0.04)", borderRadius: "16px", padding: "6px", marginBottom: "24px" },
-  tab: { flex: 1, padding: "12px", border: "none", borderRadius: "10px", cursor: "pointer", fontSize: "15px", fontWeight: "600", background: "transparent", color: "rgba(255,255,255,0.4)", transition: "all 0.2s" },
-  tabActive: { background: "#FAB400", color: "#0a0a0f" },
-  form: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "32px", display: "flex", flexDirection: "column", gap: "20px" },
-  formGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" },
-  inputGroup: { display: "flex", flexDirection: "column", gap: "6px" },
-  label: { color: "rgba(255,255,255,0.6)", fontSize: "13px", fontWeight: "500" },
-  input: { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", padding: "14px 16px", color: "#fff", fontSize: "15px", outline: "none", width: "100%", boxSizing: "border-box" },
-  fareBox: { background: "rgba(250,180,0,0.08)", border: "1px solid rgba(250,180,0,0.2)", borderRadius: "16px", padding: "20px", display: "flex", flexDirection: "column", gap: "10px" },
+  
+  
+  heroBadge: { display: "inline-block", background: "rgba(59, 130, 246, 0.1)", border: "1px solid rgba(59, 130, 246, 0.2)", color: "#60a5fa", padding: "8px 20px", borderRadius: "100px", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px" },
+  
+  heroTitle: { fontSize: "clamp(40px, 5vw, 64px)", fontWeight: "800", color: "#f8fafc", margin: "0 0 16px", lineHeight: "1.1", letterSpacing: "-1px" },
+  heroAccent: { color: "#3b82f6" }, /* Premium Blue instead of Yellow */
+  heroSub: { color: "#94a3b8", fontSize: "18px", maxWidth: "520px", margin: "0 auto", lineHeight: "1.6" },
+  
+  
+  tabs: { display: "flex", gap: "8px", background: "rgba(255, 255, 255, 0.03)", borderRadius: "16px", padding: "6px", marginBottom: "24px", border: "1px solid rgba(255, 255, 255, 0.05)" },
+  tab: { flex: 1, padding: "14px", border: "none", borderRadius: "12px", cursor: "pointer", fontSize: "15px", fontWeight: "600", background: "transparent", color: "#94a3b8", transition: "all 0.3s ease" },
+  tabActive: { background: "#3b82f6", color: "#ffffff", boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)" },
+  
+  
+  form: { 
+    background: "rgba(15, 23, 42, 0.6)", 
+    backdropFilter: "blur(16px)", 
+    WebkitBackdropFilter: "blur(16px)", /* Safari support */
+    border: "1px solid rgba(255, 255, 255, 0.08)", 
+    borderRadius: "24px", 
+    padding: "40px", 
+    display: "flex", 
+    flexDirection: "column", 
+    gap: "24px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+  },
+  
+  formGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" },
+  inputGroup: { display: "flex", flexDirection: "column", gap: "8px" },
+  label: { color: "#cbd5e1", fontSize: "13px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" },
+  
+  
+  input: { 
+    background: "rgba(255, 255, 255, 0.03)", 
+    border: "1px solid rgba(255, 255, 255, 0.1)", 
+    borderRadius: "14px", 
+    padding: "16px", 
+    color: "#ffffff", 
+    fontSize: "15px", 
+    outline: "none", 
+    width: "100%", 
+    boxSizing: "border-box",
+    transition: "all 0.2s ease"
+  },
+  
+  
+  fareBox: { background: "rgba(59, 130, 246, 0.05)", border: "1px solid rgba(59, 130, 246, 0.2)", borderRadius: "16px", padding: "20px", display: "flex", flexDirection: "column", gap: "12px" },
   fareRow: { display: "flex", justifyContent: "space-between", alignItems: "center" },
-  fareTotal: { borderTop: "1px solid rgba(250,180,0,0.2)", paddingTop: "10px", marginTop: "6px" },
-  fareLabel: { color: "rgba(255,255,255,0.6)", fontSize: "14px", fontWeight: "500" },
-  fareValue: { color: "#FAB400", fontSize: "18px", fontWeight: "700" },
-  btn: { background: "#FAB400", color: "#0a0a0f", border: "none", borderRadius: "12px", padding: "16px", fontSize: "16px", fontWeight: "700", cursor: "pointer" },
-  error: { color: "#ff6b6b", fontSize: "13px", margin: "0" },
-  success: { color: "#51cf66", fontSize: "13px", margin: "0" },
+  fareTotal: { borderTop: "1px solid rgba(59, 130, 246, 0.2)", paddingTop: "12px", marginTop: "4px" },
+  fareLabel: { color: "#94a3b8", fontSize: "14px", fontWeight: "600" },
+  fareValue: { color: "#60a5fa", fontSize: "18px", fontWeight: "800" },
+  
+  
+  btn: { 
+    background: "#3b82f6", 
+    color: "#ffffff", 
+    border: "none", 
+    borderRadius: "14px", 
+    padding: "18px", 
+    fontSize: "16px", 
+    fontWeight: "700", 
+    cursor: "pointer",
+    boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.3)",
+    transition: "all 0.2s ease"
+  },
+  
+  error: { color: "#ef4444", fontSize: "14px", fontWeight: "500", margin: "0", background: "rgba(239,68,68,0.1)", padding: "10px", borderRadius: "8px" },
+  success: { color: "#10b981", fontSize: "14px", fontWeight: "500", margin: "0", background: "rgba(16,185,129,0.1)", padding: "10px", borderRadius: "8px" },
 };
 
 export default HomePage;

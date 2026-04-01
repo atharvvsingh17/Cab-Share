@@ -17,7 +17,7 @@ const register = async (req, res) => {
     }
 
     const otp = generateOtp();
-    const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    const otpExpires = new Date(Date.now() + 5 * 60 * 1000); 
 
     const user = new User({
       name,
@@ -28,7 +28,16 @@ const register = async (req, res) => {
     });
 
     await user.save();
-    await sendEmail(email, "Verify your CabShare account", `Your OTP is: ${otp}`);
+
+    await sendEmail({
+      email: email,
+      subject: "Verify your CabShare account 🚕",
+      message: `Greetings ${name}, <br><br>Welcome to CabShare! To complete your registration and verify your identity, please use the One-Time Password (OTP) provided below. This code is valid for 5 minutes.`,
+      details: `
+        <strong>Verification Code:</strong> <span style="font-size: 20px; letter-spacing: 2px; color: #3498db;">${otp}</span><br>
+        <strong>Action:</strong> Account Registration
+      `
+    });
 
     res.status(201).json({ message: "Registered! OTP sent to email 🚀" });
   } catch (err) {
@@ -36,7 +45,6 @@ const register = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 const login = async (req, res) => {
   try {
@@ -58,7 +66,15 @@ const login = async (req, res) => {
     user.otpExpires = otpExpires;
     await user.save();
 
-    await sendEmail(email, "Your CabShare Login OTP", `Your OTP is: ${otp}`);
+    await sendEmail({
+      email: email,
+      subject: "Your CabShare Login OTP 🔑",
+      message: `Greetings, <br><br>A login attempt was made for your CabShare account. Please use the following code to authorize this session. If you did not request this, please secure your account.`,
+      details: `
+        <strong>Login OTP:</strong> <span style="font-size: 20px; letter-spacing: 2px; color: #2c3e50;">${otp}</span><br>
+        <strong>Expires in:</strong> 5 Minutes
+      `
+    });
 
     res.json({ message: "OTP sent to your email 🚀" });
   } catch (err) {
@@ -92,7 +108,6 @@ const verifyOtp = async (req, res) => {
       return res.status(500).json({ error: "Server configuration error" });
     }
 
-
     user.otp = null;
     user.otpExpires = null;
     user.isVerified = true;
@@ -120,7 +135,6 @@ const verifyOtp = async (req, res) => {
   }
 };
 
-
 const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-otp -otpExpires");
@@ -129,7 +143,6 @@ const getProfile = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 const updateProfile = async (req, res) => {
   try {

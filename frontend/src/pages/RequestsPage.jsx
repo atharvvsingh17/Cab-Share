@@ -56,7 +56,6 @@ const RequestsPage = () => {
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 
-  
   const statusColor = {
     pending: { bg: "rgba(245, 158, 11, 0.15)", border: "rgba(245, 158, 11, 0.3)", text: "#f59e0b" },
     accepted: { bg: "rgba(16, 185, 129, 0.15)", border: "rgba(16, 185, 129, 0.3)", text: "#10b981" },
@@ -65,8 +64,10 @@ const RequestsPage = () => {
 
   const RequestCard = ({ req, type }) => {
     const partner = type === "received" ? req.from : req.to;
-    const isAccepted = req.status === "accepted";
     const colors = statusColor[req.status];
+    
+    // Logic: Show contact box for both Received AND Sent tabs
+    const shouldShowContact = req.status === "accepted" && partner?.phone;
 
     return (
       <div style={styles.card} className="animate-slide-up">
@@ -107,8 +108,8 @@ const RequestsPage = () => {
           </div>
         )}
 
-        {}
-        {isAccepted && (
+        {/* Contact Details with NEW WhatsApp Button */}
+        {shouldShowContact && (
           <div style={styles.contactBox}>
             <div style={styles.contactHeader}>
               <span style={styles.contactBadge}>✓ Connected</span>
@@ -163,16 +164,26 @@ const RequestsPage = () => {
             </div>
 
             {partner?.phone && (
-              <a 
-                href={`tel:${partner.phone.replace(/\s/g, '')}`} 
-                style={styles.callBtn}
-                onClick={() => {
-                  
-                }}
-              >
-                <span style={styles.callIcon}>📞</span>
-                Call {partner.name.split(" ")[0]}
-              </a>
+              <div style={styles.contactActions}>
+                <a 
+                  href={`tel:${partner.phone.replace(/\D/g, '')}`} 
+                  style={styles.callBtn}
+                >
+                  <span style={styles.callIcon}>📞</span>
+                  Call
+                </a>
+                
+                {/* THE NEW WHATSAPP BUTTON */}
+                <a 
+                  href={`https://wa.me/${partner.phone.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(partner.name.split(" ")[0])},%20I%20am%20your%20CabShare%20partner!`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={styles.whatsappBtn}
+                >
+                  <span style={styles.callIcon}>💬</span>
+                  WhatsApp
+                </a>
+              </div>
             )}
           </div>
         )}
@@ -182,7 +193,7 @@ const RequestsPage = () => {
           {formatDate(req.createdAt)}
         </p>
 
-        {}
+        {/* Action Buttons only for received pending requests */}
         {type === "received" && req.status === "pending" && (
           <div style={styles.actions}>
             <button
@@ -271,7 +282,7 @@ const RequestsPage = () => {
   );
 };
 
-
+// --- UPGRADED PREMIUM STYLES ---
 const styles = {
   page: { minHeight: "100vh", background: "linear-gradient(135deg, #020617 0%, #0f172a 100%)", fontFamily: "'Plus Jakarta Sans', sans-serif", paddingBottom: "80px" },
   container: { maxWidth: "720px", margin: "0 auto", padding: "100px 20px 40px" },
@@ -279,7 +290,6 @@ const styles = {
   title: { color: "#f8fafc", fontSize: "36px", fontWeight: "800", margin: "0 0 8px", letterSpacing: "-0.02em" },
   subtitle: { color: "#94a3b8", fontSize: "16px", margin: 0, fontWeight: "500" },
   
-
   tabs: { display: "flex", gap: "12px", marginBottom: "28px" },
   tab: { 
     flex: 1, 
@@ -314,7 +324,6 @@ const styles = {
   },
   
   list: { display: "flex", flexDirection: "column", gap: "16px" },
-  
   
   card: { 
     background: "rgba(15, 23, 42, 0.6)", 
@@ -353,7 +362,6 @@ const styles = {
     whiteSpace: "nowrap",
   },
   
-  
   routeCard: {
     background: "rgba(255, 255, 255, 0.03)",
     borderRadius: "16px",
@@ -369,7 +377,6 @@ const styles = {
   routeDetails: { display: "flex", gap: "10px", flexWrap: "wrap" },
   routeChip: { background: "rgba(255, 255, 255, 0.05)", color: "#cbd5e1", padding: "6px 12px", borderRadius: "10px", fontSize: "13px", fontWeight: "600" },
   
-  
   messageBox: {
     background: "rgba(255, 255, 255, 0.02)",
     borderLeft: "3px solid #f59e0b",
@@ -379,7 +386,6 @@ const styles = {
   },
   quoteIcon: { position: "absolute", top: "-8px", left: "8px", fontSize: "32px", color: "rgba(245, 158, 11, 0.3)", fontFamily: "Georgia, serif" },
   message: { color: "#cbd5e1", fontSize: "14px", fontStyle: "italic", margin: 0, lineHeight: "1.6", paddingLeft: "20px" },
-  
   
   contactBox: { 
     background: "rgba(59, 130, 246, 0.05)",
@@ -413,21 +419,46 @@ const styles = {
   contactLabel: { color: "#94a3b8", fontSize: "12px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" },
   contactValue: { color: "#f8fafc", fontSize: "15px", fontWeight: "600", wordBreak: "break-word" },
   
+  /* NEW: Contact Actions Layout */
+  contactActions: {
+    display: "flex",
+    gap: "12px",
+    marginTop: "8px",
+  },
   callBtn: {
+    flex: 1,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "10px",
+    gap: "8px",
     background: "#3b82f6",
     color: "#ffffff",
     border: "none",
     borderRadius: "14px",
     padding: "16px",
-    fontSize: "16px",
+    fontSize: "15px",
     fontWeight: "700",
     textDecoration: "none",
     cursor: "pointer",
     boxShadow: "0 4px 14px rgba(59, 130, 246, 0.3)",
+    transition: "all 0.3s",
+  },
+  whatsappBtn: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    background: "#10b981", /* Emerald green matches the WhatsApp vibe and theme perfectly */
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "14px",
+    padding: "16px",
+    fontSize: "15px",
+    fontWeight: "700",
+    textDecoration: "none",
+    cursor: "pointer",
+    boxShadow: "0 4px 14px rgba(16, 185, 129, 0.3)",
     transition: "all 0.3s",
   },
   callIcon: { fontSize: "20px" },
